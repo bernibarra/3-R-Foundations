@@ -30,7 +30,7 @@
 # `students$math_grades` minus `students$spanish_grades`
 
 
-# Add another column `better.at.math` as a boolean (TRUE/FALSE) variable that
+# Add another column `better_at_math` as a boolean (TRUE/FALSE) variable that
 # indicates that a student got a better grade in math
 
 # Create a variable `num_better_at_math` that is the number
