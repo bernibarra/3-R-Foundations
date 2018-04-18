@@ -59,8 +59,8 @@
 # Be sure to **not** treat strings as factors!
 
 
-# Create a variable `children` that are the *only* the rows of the data frame
-# with information about the number children on the Titanic.
+# Create a variable `children` that contains *only* the rows of the data frame 
+# with information about the children on the Titanic.
 
 
 # Create a variable `num_children` that is the total number of children.
