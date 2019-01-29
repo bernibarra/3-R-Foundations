@@ -241,13 +241,9 @@ region_avg_comparison <- region_avg[[max(region_avg$change), "region"]]
 # Then, in a comment below, *provide an interpretation* of the relationship
 # you observe. Feel free to use any library of your choice, or base R functions.
 
-plot(region_avg$region, region_avg$change)
-
-axis(1, at=1:7, lab=region)
-
-axis(2, las=10, at=30)
-
-# Create box around plot
+plot(region_avg$change, main="Regional change from 1960 to 2013", sub="Regional clusters")
 box()
 
-# Put your interpretation here!
+# The regional grouping averages should show up as clusters or points relative to the
+# anount of datapoints for every member within each regional grouping.
+
