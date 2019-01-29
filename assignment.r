@@ -1,4 +1,4 @@
-# a3-using-data
+# a3usingdata
 
 # Before you get started, set your working directory using the Session menu
 
@@ -16,7 +16,9 @@ math_grades <- c(1, 20, 50, 80, 95)
 spanish_grades <- c(95, 80, 50, 20, 1)
 # Create a data.frame variable `students` by combining
 # the vectors `first_names`, `math_grades`, and `spanish_grades`
-students <- data.frame(first_names, math_grades, spanish_grades, stringsAsFactors = F)
+students <- data.frame(first_names, math_grades, spanish_grades,
+  stringsAsFactors = F
+)
 
 # Create a variable `num_students` that contains the
 # number of rows in your dataframe `students`
@@ -93,8 +95,14 @@ survival_rate <- function(class_name) {
   male_survival_rate <- surviving_males / (surviving_males + nonsurviving_males)
   # adult female and children subsetting
   adult_females <- adult_set[adult_set$Sex == "Female", ]
-  surviving_females <- sum(adult_females[adult_females$Survived == "Yes", "Freq"])
-  nonsurviving_females <- sum(adult_females[adult_females$Survived == "No", "Freq"])
+  surviving_females <- sum(adult_females[
+    adult_females$Survived == "Yes",
+    "Freq"
+  ])
+  nonsurviving_females <- sum(adult_females[
+    adult_females$Survived == "No",
+    "Freq"
+  ])
   # child subsetting
   surviving_children <- sum(child_set[child_set$Survived == "Yes", "Freq"])
   nonsurviving_children <- sum(child_set[child_set$Survived == "No", "Freq"])
@@ -183,15 +191,17 @@ bigger_change <- function(country_one, country_two) {
 
   diff_change <- abs(one_change - two_change)
   if (one_change > two_change) {
-    result <- paste("The country with the bigger change in life expectancy was ",
-      country_one, " (gain=", one_change, ") whose life expectancy grew by ",
-      diff_change, " years more than ", country_two, "'s (gain=", two_change, ").",
+    result <- paste("The country with the bigger change in life expectancy was "
+      , country_one, " (gain=", one_change, ") whose life expectancy grew by "
+      , diff_change, " years more than ", country_two, "'s (gain=", two_change
+      , ").",
       sep = ""
     )
   } else {
-    result <- paste("The country with the bigger change in life expectancy was ",
-      country_two, " (gain=", two_change, ") whose life expectancy grew by ",
-      diff_change, " years more than ", country_one, "'s (gain=", one_change, ").",
+    result <- paste("The country with the bigger change in life expectancy was "
+      , country_two, " (gain=", two_change, ") whose life expectancy grew by "
+      , diff_change, " years more than ", country_one, "'s (gain=", one_change
+      , ").",
       sep = ""
     )
   }
@@ -214,20 +224,15 @@ write.csv(students, "data/life_expectancy_with_change.csv", row.names = F)
 # To do this, you'll need to *compute the average* change across the countries
 # in each region, and then compare the averages across regions.
 # Feel free to use any library of your choice, or base R functions.
-# install.packages("dplyr")
+# install dot packages("dplyr")
 library("dplyr")
+# "using aggregate function and dyplr
+region_avg <- select(life_expectancy, region, change)
+region_avg %>%
+  group_by(region) %>%
+  summarise(mean_reg = mean(change, na.rm = TRUE))
 
-reg_avg <- select(life_expectancy, region, region_avg_1960)
-
-region_avg <- select(life_expectancy, region, change = max(mean(change)))
-region_avg_2013 <- select(life_expectancy, region, change)
-str(life_expectancy)
-highest_avg_change <- max(region_avg_1960, region_avg_2013)
-
-mean(x, trim = 0, na.rm = FALSE)
-"aggregate function in challenge and dyplr"
-
-region_name
+region_avg_comparison <- region_avg[[max(region_avg$change), "region"]]
 
 # Create a *well labeled* plot (readable title, x-axis, y-axis) showing
 # Life expectancy in 1960 v.s. Change in life expectancy
@@ -236,5 +241,13 @@ region_name
 # Then, in a comment below, *provide an interpretation* of the relationship
 # you observe. Feel free to use any library of your choice, or base R functions.
 
+plot(region_avg$region, region_avg$change)
+
+axis(1, at=1:7, lab=region)
+
+axis(2, las=10, at=30)
+
+# Create box around plot
+box()
 
 # Put your interpretation here!
