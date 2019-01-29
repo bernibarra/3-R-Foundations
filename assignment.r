@@ -228,7 +228,7 @@ write.csv(students, "data/life_expectancy_with_change.csv", row.names = F)
 library("dplyr")
 # "using aggregate function and dyplr
 region_avg <- select(life_expectancy, region, change)
-region_avg %>%
+  region_avg %>%
   group_by(region) %>%
   summarise(mean_reg = mean(change, na.rm = TRUE))
 
@@ -240,9 +240,11 @@ region_avg_comparison <- region_avg[[max(region_avg$change), "region"]]
 # your graph as a .png file in your repo
 # Then, in a comment below, *provide an interpretation* of the relationship
 # you observe. Feel free to use any library of your choice, or base R functions.
-
-plot(region_avg$change, main="Regional change from 1960 to 2013", sub="Regional clusters")
+png('rplot.png')
+plot(region_avg$change, main="Regional change from 1960 to 2013", sub="Regional clusters",
+     xlab = "General Changes", ylab = "General Regions", col = "#2E9FDF")
 box()
+dev.off()
 
 # The regional grouping averages should show up as clusters or points relative to the
 # anount of datapoints for every member within each regional grouping.

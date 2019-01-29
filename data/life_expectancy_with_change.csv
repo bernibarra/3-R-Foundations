@@ -1,0 +1,6 @@
+"first_names","math_grades","spanish_grades","grade_diff","better_at_math"
+"Alex",1,95,-94,FALSE
+"Bob",20,80,-60,FALSE
+"Chris",50,50,0,FALSE
+"Doug",80,20,60,TRUE
+"Eddie",95,1,94,TRUE
