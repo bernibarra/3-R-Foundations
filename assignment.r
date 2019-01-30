@@ -231,8 +231,8 @@ region_avg <- select(life_expectancy, region, change)
   region_avg %>%
   group_by(region) %>%
   summarise(mean_reg = mean(change, na.rm = TRUE))
-
-region_avg_comparison <- region_avg[[max(region_avg$change), "region"]]
+  
+  highest_avg_change <- max(region_avg[max(region_avg$change), "region"])
 
 # Create a *well labeled* plot (readable title, x-axis, y-axis) showing
 # Life expectancy in 1960 v.s. Change in life expectancy
@@ -241,11 +241,13 @@ region_avg_comparison <- region_avg[[max(region_avg$change), "region"]]
 # Then, in a comment below, *provide an interpretation* of the relationship
 # you observe. Feel free to use any library of your choice, or base R functions.
 png('rplot.png')
-plot(region_avg$change, main="Regional change from 1960 to 2013", sub="Regional clusters",
-     xlab = "General Changes", ylab = "General Regions", col = "#2E9FDF")
-box()
+plot(life_expectancy$le_1960, life_expectancy$change, main="Regional Life 
+     Expectancy Changes From 1960", xlab = "1960 Life Expectancy", 
+     ylab = "Changes of Life Expectancy", col = "#2E9FDF")
 dev.off()
 
-# The regional grouping averages should show up as clusters or points relative to the
-# anount of datapoints for every member within each regional grouping.
+# The changes of life expectancy since 1960 show a negative correlation of
+# shorter life spans. However there is a stronger relatiohship at higher ages
+# meaning countries who have a higher life expectacy average, also have it 
+# more consistently than those with a lower one.
 
